@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Domain\Entities\Transaction;
-use App\Domain\Repositories\TransactionRepositoryInterface;
+use App\Domain\Transaction\Transaction;
+use App\Repositories\TransactionRepositoryInterface;
 use App\Models\Transaction as EloquentTransaction;
 
 class TransactionRepository implements TransactionRepositoryInterface
