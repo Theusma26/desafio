@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Repositories\TransactionRepositoryInterface;
+use App\Repositories\Transaction\TransactionRepositoryInterface;
 
 class TransactionService
 {

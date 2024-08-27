@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Transaction;
 
 use App\Models\Transaction;
 use App\Models\TransactionType;
-use App\Repositories\TransactionRepositoryInterface;
+use App\Repositories\Transaction\TransactionRepositoryInterface;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {

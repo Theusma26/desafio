@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Transaction;
 
 use App\Models\Transaction;
 
