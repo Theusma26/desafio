@@ -14,6 +14,7 @@ class TransactionRepository implements TransactionRepositoryInterface
         $eloquentTransaction->description = $transaction->description;
         $eloquentTransaction->amount = $transaction->amount;
         $eloquentTransaction->type = $transaction->type;
+        $eloquentTransaction->categoria = $transaction->categoria;
         $eloquentTransaction->transaction_date = $transaction->transaction_date;
         $eloquentTransaction->save();
     }
