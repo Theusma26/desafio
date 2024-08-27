@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
             $table->decimal('amount', 15, 2);
+            $table->enum('type', ['expense', 'income']);
             $table->foreignId('transaction_type_id')->constrained('transaction_types');
-            $table->date('transaction_date');
             $table->timestamps();
         });
     }
