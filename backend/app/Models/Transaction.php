@@ -6,13 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    protected $fillable = [
-        'description',
-        'amount',
-        'type',
-        'categoria',
-        'transaction_date'
-    ];
+    protected $fillable = ['description', 'amount', 'transaction_type_id', 'transaction_date'];
 
-    protected $table = 'transactions';
+    public function transactionType()
+    {
+        return $this->belongsTo(TransactionType::class);
+    }
 }

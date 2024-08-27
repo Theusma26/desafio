@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\TransactionRepositoryInterface;
-use App\Domain\Transaction\Transaction;
 
 class TransactionService
 {
