@@ -2,35 +2,35 @@
 
 namespace App\Repositories;
 
-use App\Domain\Transaction\Transaction;
+use App\Models\Transaction;
 use App\Repositories\TransactionRepositoryInterface;
-use App\Models\Transaction as EloquentTransaction;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {
-    public function save(Transaction $transaction)
+    public function getAll()
     {
-        $eloquentTransaction = new EloquentTransaction();
-        $eloquentTransaction->description = $transaction->description;
-        $eloquentTransaction->amount = $transaction->amount;
-        $eloquentTransaction->type = $transaction->type;
-        $eloquentTransaction->categoria = $transaction->categoria;
-        $eloquentTransaction->transaction_date = $transaction->transaction_date;
-        $eloquentTransaction->save();
+        return Transaction::all();
     }
 
-    public function findById($id)
+    public function find($id)
     {
-        return EloquentTransaction::find($id);
+        return Transaction::findOrFail($id);
+    }
+
+    public function create(array $data)
+    {
+        return Transaction::create($data);
+    }
+
+    public function update(Transaction $transaction, array $data)
+    {
+        $transaction->update($data);
+        return $transaction;
     }
 
     public function delete($id)
     {
-        EloquentTransaction::destroy($id);
-    }
-
-    public function getAll()
-    {
-        return EloquentTransaction::all();
+        $transaction = $this->find($id);
+        return $transaction->delete();
     }
 }

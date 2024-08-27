@@ -2,12 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Domain\Transaction\Transaction;
+use App\Models\Transaction;
 
 interface TransactionRepositoryInterface
 {
-    public function save(Transaction $transaction);
-    public function findById($id);
-    public function delete($id);
     public function getAll();
+    public function find($id);
+    public function create(array $data);
+    public function update(Transaction $transaction, array $data);
+    public function delete($id);
 }
