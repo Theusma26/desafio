@@ -12,26 +12,38 @@ import { Router } from '@angular/router';
   styleUrl: './transaction-list.component.css'
 })
 export class TransactionListComponent {
-  transactionsSignal = signal<Transaction[]>([]);
+  transactions = signal<Transaction[]>([]);
 
   constructor(
     private transactionService: TransactionService,
     private router: Router
     ) {
     effect(() => {
-      this.transactionService.getAllTransactions().subscribe(
-        (data: Transaction[]) => {
-          this.transactionsSignal.set(data);
-        },
-        (error) => {
-          console.error('Error fetching transactions:', error);
-        }
-      );
+      this.loadTransactions();
     });
+  }
+
+  loadTransactions() {
+    this.transactionService.getAllTransactions().subscribe(
+      (data: Transaction[]) => {
+        this.transactions.set(data);
+      },
+      (error) => {
+        console.error('Error fetching transactions:', error);
+      }
+    );
   }
 
   editTransaction(transactionId: number) {
     this.router.navigate(['/transaction-form', transactionId]);
+  }
+
+  deleteTransaction(id: number) {
+    if (confirm('Are you sure you want to delete this transaction?')) {
+      this.transactionService.deleteTransaction(id).subscribe(() => {
+        this.loadTransactions();
+      });
+    }
   }
 
 }
