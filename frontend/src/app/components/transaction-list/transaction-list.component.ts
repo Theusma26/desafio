@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class TransactionListComponent {
   transactions = signal<Transaction[]>([]);
+  loading = signal<boolean>(true);
 
   constructor(
     private transactionService: TransactionService,
@@ -27,9 +28,11 @@ export class TransactionListComponent {
     this.transactionService.getAllTransactions().subscribe(
       (data: Transaction[]) => {
         this.transactions.set(data);
+        this.loading.set(false);
       },
       (error) => {
         console.error('Error fetching transactions:', error);
+        this.loading.set(false);
       }
     );
   }
@@ -39,6 +42,7 @@ export class TransactionListComponent {
   }
 
   deleteTransaction(id: number) {
+    this.loading.set(true);
     if (confirm('Are you sure you want to delete this transaction?')) {
       this.transactionService.deleteTransaction(id).subscribe(() => {
         this.loadTransactions();

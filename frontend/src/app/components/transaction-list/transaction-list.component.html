@@ -1,4 +1,7 @@
-<div class="overflow-x-auto">
+<div *ngIf="loading()" class="text-center py-4">
+  <p>Loading...</p>
+</div>
+<div *ngIf="!loading()" class="overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">
         <tr>
@@ -21,7 +24,9 @@
           >
             Editar
           </button>
-          <button (click)="deleteTransaction(transaction.id)" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Delete</button>
+          <button (click)="deleteTransaction(transaction.id)" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
+            Delete
+          </button>
           </td>
         </tr>
       </ng-container>
