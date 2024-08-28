@@ -5,18 +5,27 @@
           <th class="px-4 py-2 text-left">Tipo</th>
           <th class="px-4 py-2 text-left">Valor</th>
           <th class="px-4 py-2 text-left">Categoria</th>
+          <th class="px-4 py-2 text-left">Ações</th>
 
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngIf="transactions.length > 0">
-        <tr *ngFor="let transaction of transactions">
+        <ng-container *ngIf="transactionsSignal().length > 0">
+        <tr *ngFor="let transaction of transactionsSignal()">
           <td class="px-4 py-2">{{ transaction.type }}</td>
           <td class="px-4 py-2">{{ transaction.amount }}</td>
           <td class="px-4 py-2">{{ transaction.transaction_type.name }}</td>
+          <td class="px-4 py-2">
+            <button
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+            (click)="editTransaction(transaction.id)"
+          >
+            Editar
+          </button>
+          </td>
         </tr>
       </ng-container>
-      <ng-container *ngIf="transactions.length === 0">
+      <ng-container *ngIf="transactionsSignal().length === 0">
         <tr>
           <td colspan="4" class="px-6 py-4 text-center text-gray-500">Nenhuma transação encontrada.</td>
         </tr>

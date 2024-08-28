@@ -1,7 +1,8 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { TransactionService } from '../../services/transaction.service';
 import { Transaction } from '../../types/types';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-list',
@@ -13,7 +14,10 @@ import { CommonModule } from '@angular/common';
 export class TransactionListComponent {
   transactionsSignal = signal<Transaction[]>([]);
 
-  constructor(private transactionService: TransactionService) {
+  constructor(
+    private transactionService: TransactionService,
+    private router: Router
+    ) {
     effect(() => {
       this.transactionService.getAllTransactions().subscribe(
         (data: Transaction[]) => {
@@ -26,8 +30,8 @@ export class TransactionListComponent {
     });
   }
 
-  get transactions() {
-    return this.transactionsSignal();
+  editTransaction(transactionId: number) {
+    this.router.navigate(['/transaction-form', transactionId]);
   }
 
 }

@@ -1,0 +1,53 @@
+<div class="container mx-auto p-4">
+  
+  <h1 class="text-2xl font-bold text-center mb-6">{{ title() }}</h1>
+  
+  <div *ngIf="isEditMode() && isLoading(); else formContent" class="flex justify-center items-center h-screen">
+    <p>Loading...</p> 
+  </div>
+
+  <ng-template #formContent>
+    <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+      <div class="mb-4">
+        <label for="amount" class="block text-gray-700">Valor</label>
+        <input
+          id="amount"
+          type="number"
+          formControlName="amount"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+          placeholder="Insira o valor da transação"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="type" class="block text-gray-700">Tipo de Transação</label>
+        <select
+          id="type"
+          formControlName="type"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+        >
+          <option value="expense">Despesa</option>
+          <option value="income">Receita</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label for="transaction_type_id" class="block text-gray-700">Categoria</label>
+        <select
+          id="transaction_type_id"
+          formControlName="transaction_type_id"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+        >
+          <option *ngFor="let type of transactionTypes()" [value]="type.id">{{ type.name }}</option>
+        </select>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+      >
+        Salvar Transação
+      </button>
+    </form>
+  </ng-template>
+</div>
