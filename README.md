@@ -1,6 +1,4 @@
-# Documentação do Projeto
-
-## Visão Geral
+# Visão Geral
 
 Este projeto é uma aplicação completa de gerenciamento de transações financeiras, que inclui funcionalidades para listar, adicionar, editar e excluir transações. A aplicação foi desenvolvida com uma arquitetura moderna e boas práticas de desenvolvimento.
 
@@ -15,7 +13,7 @@ Este projeto é uma aplicação completa de gerenciamento de transações financ
 
 ### Frontend
 
-O frontend da aplicação foi desenvolvido usando Angular 17. A estilização foi realizada com Tailwind CSS, proporcionando um design responsivo e elegante.
+O frontend da aplicação foi desenvolvido usando Angular 17. A estilização foi realizada com Tailwind CSS.
 
 ### Componentes
 
