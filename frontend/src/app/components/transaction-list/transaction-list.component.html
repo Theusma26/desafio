@@ -11,7 +11,7 @@
       <tbody class="bg-white divide-y divide-gray-200">
         <ng-container *ngIf="transactions().length > 0">
         <tr *ngFor="let transaction of transactions()">
-          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ transaction.type }}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ transaction.type === 'expense' ? 'Despesa' : 'Receita' }}</td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ transaction.amount }}</td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ transaction.transaction_type.name }}</td>
           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex space-x-2">
